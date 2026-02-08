@@ -42,7 +42,7 @@ async function inspectFeeds() {
                 console.log('No items found.');
             }
         } catch (error) {
-            console.error('Error fetching/parsing:', error.message);
+            console.error('Error fetching/parsing:', (error as Error).message);
         }
     }
 }
