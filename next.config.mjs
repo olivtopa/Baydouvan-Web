@@ -14,7 +14,72 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'i.ytimg.com',
       },
+      {
+        protocol: 'https',
+        hostname: '**.agenceecofin.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.jeuneafrique.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.africultures.com',
+      },
+      {
+        protocol: 'http',
+        hostname: '**.africultures.com',
+      },
+      {
+        protocol: 'http',
+        hostname: 'africultures.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'africultures.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.rfi.fr',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.techcabal.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.financialafrik.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.wearetech.africa',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.afriqueitnews.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.mjedge.net', // TechCabal CDN
+      },
+      {
+        protocol: 'https',
+        hostname: '**.africarice.org',
+      },
+      {
+        protocol: 'https',
+        hostname: 'africarice.org',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.itweb.co.za',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.itweb.africa',
+      },
     ],
+
   },
 };
 

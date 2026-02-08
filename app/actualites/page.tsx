@@ -1,91 +1,21 @@
-"use client";
-
-import { useState, useEffect, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
-import { NewsGrid } from "@/components/news/NewsGrid";
-import { newsData } from "@/data/newsData";
+import { Suspense } from "react";
 import { Header } from "@/components/layout/Header";
 import { StickyFooter } from "@/components/ui/StickyFooter";
+import { fetchNewsData } from "@/lib/fetchNews";
+import { NewsPageClient } from "./NewsPageClient";
 
-const categories = [
-    { id: "culture", label: "S'ancrer" },
-    { id: "economie", label: "Faire Circuler" },
-    { id: "tech", label: "Coder le Futur" },
-];
+export const revalidate = 3600; // Revalidate every hour
 
-function NewsContent() {
-    const searchParams = useSearchParams();
-    const categoryParam = searchParams.get("category");
-    const [activeTab, setActiveTab] = useState("culture");
-
-    useEffect(() => {
-        if (categoryParam && categories.some(c => c.id === categoryParam)) {
-            setActiveTab(categoryParam);
-        }
-    }, [categoryParam]);
-
-    const filteredNews = newsData.filter(item => item.category === activeTab);
+export default async function NewsPage() {
+    const newsItems = await fetchNewsData();
 
     return (
         <main className="min-h-screen bg-black-main font-body text-white selection:bg-gold selection:text-black-main">
             <Header />
-
-            <div className="container mx-auto px-4 py-24 md:py-32">
-                {/* Page Header */}
-                <div className="mb-12 text-center">
-                    <motion.h1
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="mb-4 font-heading text-4xl font-bold text-gold md:text-5xl"
-                    >
-                        Actualités & Veille
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="mx-auto max-w-2xl text-gray-300"
-                    >
-                        Explorez les dernières avancées, analyses et découvertes qui façonnent notre futur.
-                        Une sélection quotidienne pour nourrir votre réflexion.
-                    </motion.p>
-                </div>
-
-                {/* Tabs */}
-                <div className="mb-12 flex flex-wrap justify-center gap-4">
-                    {categories.map((cat) => (
-                        <button
-                            key={cat.id}
-                            onClick={() => setActiveTab(cat.id)}
-                            className={`rounded-full border px-6 py-2 text-sm font-bold transition-all ${activeTab === cat.id
-                                    ? "border-gold bg-gold text-black-main"
-                                    : "border-white/20 hover:border-gold hover:text-gold"
-                                }`}
-                        >
-                            {cat.label}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Content */}
-                <NewsGrid items={filteredNews} />
-
-                {/* Load More / Footer Note */}
-                <div className="mt-16 text-center text-sm text-gray-500">
-                    Mis à jour quotidiennement • Sources vérifiées
-                </div>
-            </div>
-
+            <Suspense fallback={<div className="min-h-screen bg-black-main text-white flex items-center justify-center">Chargement...</div>}>
+                <NewsPageClient initialNews={newsItems} />
+            </Suspense>
             <StickyFooter />
         </main>
-    );
-}
-
-export default function NewsPage() {
-    return (
-        <Suspense fallback={<div className="min-h-screen bg-black-main text-white flex items-center justify-center">Chargement...</div>}>
-            <NewsContent />
-        </Suspense>
     );
 }

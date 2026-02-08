@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Clock, Tag } from "lucide-react";
-import { NewsItem } from "@/data/newsData";
+import { ArrowRight, Clock, Tag, ExternalLink } from "lucide-react";
+import { NewsItem } from "@/lib/fetchNews";
 
 interface NewsCardProps {
     item: NewsItem;
@@ -25,7 +25,7 @@ export const NewsCard = ({ item }: NewsCardProps) => {
             {/* Image Container */}
             <div className="relative h-48 w-full overflow-hidden bg-zinc-800">
                 <Image
-                    src={hasError ? fallbackImage : imgSrc}
+                    src={hasError || !imgSrc ? fallbackImage : imgSrc}
                     alt={item.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -71,12 +71,13 @@ export const NewsCard = ({ item }: NewsCardProps) => {
                 {/* Footer Link */}
                 <div className="mt-auto">
                     <Link
-                        href={item.videoUrl}
+                        href={item.link}
                         target="_blank"
-                        className="inline-flex items-center gap-2 text-sm font-bold text-gold transition-all group-hover:gap-3"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-bold text-gold transition-all group-hover:gap-3 hover:underline"
                     >
                         Lire l&apos;article
-                        <ArrowRight className="h-4 w-4" />
+                        <ExternalLink className="h-4 w-4" />
                     </Link>
                 </div>
             </div>

@@ -22,7 +22,7 @@ export const Header = () => {
             <div className="container mx-auto flex h-20 items-center justify-between px-6">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-3">
-                    <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-gold">
+                    <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-gold">
                         <Image
                             src="/images/logo.jpeg"
                             alt="Baydouvan Logo"

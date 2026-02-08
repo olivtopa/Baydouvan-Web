@@ -1,4 +1,4 @@
-import { NewsItem } from "@/data/newsData";
+import { NewsItem } from "@/lib/fetchNews";
 import { NewsCard } from "./NewsCard";
 import { motion } from "framer-motion";
 
