@@ -94,6 +94,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.inova.gp',
       },
+      {
+        protocol: 'https',
+        hostname: '**.cio-mag.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cio-mag.com',
+      },
     ],
 
   },

@@ -16,11 +16,9 @@ const parser = new Parser({
 });
 
 const feeds = [
-    'https://techcabal.com/feed/', // Known good
-    'https://www.agenceecofin.com/telecom/flux-rss', // Ecofin Telecom
-    'https://techpoint.africa/feed/',
-    'https://disrupt-africa.com/feed/',
-    'https://itweb.africa/rss'
+    'https://www.wearetech.africa/feed',
+    'https://cio-mag.com/feed/',
+    'https://digital-business.africa/feed/',
 ];
 
 async function inspectFeeds() {
