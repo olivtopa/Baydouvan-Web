@@ -15,6 +15,16 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Baydouvan - L'Excellence Noire",
   description: "Mettre en avant l'excellence noire : Culture, Économie, Tech.",
+  manifest: '/manifest.webmanifest',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Baydouvan',
+  },
+  icons: {
+    icon: '/logo.jpeg',
+    apple: '/logo.jpeg',
+  },
 };
 
 export default function RootLayout({
