@@ -10,7 +10,10 @@ export const RSS_FEEDS = {
     'https://www.rfi.fr/fr/culture/rss',
   ],
   tech: [
-    'https://techcabal.com/feed/',
-    'https://itweb.africa/rss'
+    'https://www.ewag.fr/articles/?_article_thematique=alimentation%2Cbiodiversite%2Cinnovation%2Csciences',
+    'https://afriqueitnews.com/news/',
+    'https://www.techinafrica.com/category/news/',
+    'https://www.martiniquedigitale.com/blog/actualites-martinique-digitale-1',
+    'https://inova.gp/actualites/'
   ]
 };

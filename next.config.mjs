@@ -78,6 +78,22 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.itweb.africa',
       },
+      {
+        protocol: 'https',
+        hostname: '**.ewag.fr',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.techinafrica.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.martiniquedigitale.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.inova.gp',
+      },
     ],
 
   },
