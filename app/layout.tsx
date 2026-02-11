@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
+import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -37,6 +38,7 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${montserrat.variable} antialiased bg-black-main text-white font-sans`}
       >
+        <ServiceWorkerRegister />
         {children}
       </body>
     </html>
