@@ -1,64 +1,78 @@
-import { Header } from "@/components/layout/Header";
-import { Hero } from "@/components/sections/Hero";
-import { BridgeWidget } from "@/components/ui/BridgeWidget";
-import { StickyFooter } from "@/components/ui/StickyFooter";
-import { Pillars } from "@/components/sections/Pillars";
+"use client";
+
+import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+import { IntroCinematic } from "../components/IntroCinematic";
 
 export default function Home() {
+    const [showIntro, setShowIntro] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        // Only show intro once per session/visit if desired, but for now we'll show it if not seen in localStorage
+        const hasSeenIntro = localStorage.getItem("baydouvan_has_seen_intro");
+        if (!hasSeenIntro) {
+            setShowIntro(true);
+        }
+        setIsLoaded(true);
+    }, []);
+
+    const handleIntroComplete = () => {
+        setShowIntro(false);
+        localStorage.setItem("baydouvan_has_seen_intro", "true");
+    };
+
+    if (!isLoaded) return null;
+
     return (
-        <main className="min-h-screen bg-black-main text-white">
-            <Header />
-            <Hero />
+        <main className="relative min-h-screen bg-black text-[#D4AF37] flex flex-col items-center justify-center p-8 overflow-hidden font-sans">
+            {showIntro && <IntroCinematic onComplete={handleIntroComplete} />}
+            
+            {/* Background Image */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-[#0a0a0a]/90 z-10" />
+                <Image
+                    src="/images/BanniereAccueil.png"
+                    alt="Baydouvan Background"
+                    fill
+                    className="object-cover opacity-60"
+                    priority
+                />
+            </div>
 
-            {/* Manifesto Section */}
-            <section id="manifesto" className="py-20 px-6 container mx-auto">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-3xl md:text-4xl font-serif text-gold mb-8">Le Manifeste</h2>
-                    <div className="prose prose-invert prose-lg mx-auto text-white/90">
-                        <p className="mb-6">
-                            On dit souvent que le savoir est une arme. C&apos;est faux. Le savoir est une <span className="italic text-gold">munition</span>. L&apos;arme, c&apos;est l&apos;action. Bienvenue sur <span className="font-bold text-gold">Baydouvan</span>, le média de l&apos;excellence noire.
-                        </p>
-                        <p className="mb-6">
-                            Si vous êtes ici, c&apos;est que vous refusez le rôle de spectateur. Vous sentez que l&apos;histoire s&apos;accélère. Baydouvan (« Mettre en avant » en créole) est né d&apos;une urgence : celle de réunir nos forces dispersées.
-                        </p>
-                    </div>
-
-                    <BridgeWidget />
-                </div>
-            </section>
-
-            {/* Pillars Section */}
-            <Pillars />
-
-            {/* Mock RSS Feed / Tidjob Integration */}
-
-            {/* About Section (reused footer or manifesto?) - Let's add a small About block or point #about here */}
-            <section id="about" className="py-20 px-6 container mx-auto text-center border-t border-white/10 scroll-mt-24">
-                <h2 className="text-3xl font-serif text-gold mb-6">À Propos</h2>
-                <p className="max-w-2xl mx-auto text-white/80">
-                    Baydouvan est une initiative portée par la communauté pour la communauté.
-                    Notre mission : révéler les potentiels et bâtir des ponts économiques solides.
+            <div className="text-center max-w-4xl mx-auto space-y-8 relative z-20">
+                <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tight text-[#D4AF37] drop-shadow-[0_0_20px_rgba(212,175,55,0.7)] font-serif">
+                    BAYDOUVAN
+                </h1>
+                <h2 className="text-2xl md:text-3xl font-semibold tracking-widest text-[#00A86B] drop-shadow-[0_0_10px_rgba(0,168,107,0.5)] uppercase font-serif">
+                    Guardians of African Memory
+                </h2>
+                
+                <p className="text-lg md:text-xl text-white max-w-2xl mx-auto py-8 font-medium leading-relaxed drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] bg-black/20 p-4 rounded-lg backdrop-blur-sm">
+                    Une société secrète protège les savoirs anciens d'Afrique. 
+                    Devenez un initié et retrouvez les artefacts perdus de notre histoire.
                 </p>
-            </section>
 
-            {/* Mock RSS Feed / Tidjob Integration */}
-            <section className="py-20 px-6 container mx-auto text-center">
-                <h2 className="text-2xl font-serif mb-8 text-white/80">En direct de <span className="text-tidjob-green font-bold">Tidjob</span></h2>
-                <div className="inline-flex items-center gap-4 bg-white/10 rounded-full px-6 py-3 border border-white/20">
-                    <span className="relative flex h-3 w-3">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-tidjob-green opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-tidjob-green"></span>
-                    </span>
-                    <span className="text-sm md:text-base">Dernière mission postée : <span className="font-bold">Recherche Traiteur à Paris</span></span>
+                <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+                    <Link 
+                        href="/missions"
+                        className="px-8 py-4 bg-[#D4AF37] text-black font-bold uppercase tracking-wider rounded-none hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(212,175,55,0.8)] transition-all duration-300 font-serif"
+                    >
+                        PLAY NOW
+                    </Link>
+                    <Link 
+                        href="/map"
+                        className="px-8 py-4 border border-[#00A86B] text-[#00A86B] font-bold uppercase tracking-wider rounded-none hover:bg-[#00A86B]/20 hover:text-white hover:shadow-[0_0_20px_rgba(0,168,107,0.5)] transition-all duration-300 bg-black/50 font-serif"
+                    >
+                        Explorer la carte
+                    </Link>
                 </div>
-            </section>
+            </div>
 
-            <footer className="py-12 border-t border-white/10 text-center text-white/40 text-sm">
-                <p>© {new Date().getFullYear()} Baydouvan. Tous droits réservés.</p>
+            <footer className="absolute bottom-0 w-full py-6 text-center text-white/90 font-medium text-xs tracking-widest uppercase font-serif drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] z-20 bg-gradient-to-t from-black/80 to-transparent">
+                <p>© {new Date().getFullYear()} BAYDOUVAN. Tous droits réservés.</p>
             </footer>
-
-            <StickyFooter />
-        </main >
+        </main>
     );
 }

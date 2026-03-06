@@ -4,9 +4,11 @@
   --color-gold: #D4AF37;
   --color-black-main: #0a0a0a;
   --color-tidjob-green: #2E7D32;
+  --color-emerald: #00A86B;
+  --color-cosmic-blue: #0F2A44;
 
-  --font-serif: var(--font-playfair);
-  --font-sans: var(--font-montserrat);
+  --font-serif: var(--font-orbitron);
+  --font-sans: var(--font-inter);
 }
 
 :root {
