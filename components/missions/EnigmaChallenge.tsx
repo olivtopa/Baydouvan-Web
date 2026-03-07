@@ -47,8 +47,8 @@ export function EnigmaChallenge({ enigma, onSuccess }: EnigmaChallengeProps) {
                             setIsCorrect(null);
                         }}
                         disabled={isCorrect === true}
-                        placeholder="Réciter votre réponse..."
-                        className="w-full bg-black border-b-2 border-[#D4AF37] px-4 py-4 text-center text-2xl text-white placeholder-white/30 focus:outline-none focus:border-white transition-colors font-bold uppercase"
+                        placeholder="Votre réponse ici"
+                        className="w-full bg-black border-b-2 border-[#D4AF37] px-2 md:px-4 py-4 text-center text-base sm:text-lg md:text-2xl text-white placeholder-white/50 focus:outline-none focus:border-white transition-colors font-bold uppercase"
                     />
                 </div>
 
