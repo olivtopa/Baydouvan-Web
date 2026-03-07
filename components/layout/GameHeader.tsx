@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AuthButton } from "../auth/AuthButton";
+import { ShareButton } from "../ui/ShareButton";
 
 interface GameHeaderProps {
     currentRoute?: string;
@@ -40,11 +41,15 @@ export const GameHeader = ({ currentRoute }: GameHeaderProps) => {
                         </Link>
                     ))}
                 </nav>
-                <AuthButton />
+                <div className="flex items-center gap-4">
+                    <ShareButton />
+                    <AuthButton />
+                </div>
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="flex md:hidden items-center gap-4">
+            <div className="flex md:hidden items-center gap-3">
+                <ShareButton />
                 <AuthButton />
                 <button
                     className="text-[#D4AF37] focus:outline-none"
