@@ -49,7 +49,6 @@ export const GameHeader = ({ currentRoute }: GameHeaderProps) => {
 
             {/* Mobile Menu Button */}
             <div className="flex md:hidden items-center gap-3">
-                <ShareButton />
                 <AuthButton />
                 <button
                     className="text-[#D4AF37] focus:outline-none"
@@ -80,6 +79,9 @@ export const GameHeader = ({ currentRoute }: GameHeaderProps) => {
                                     {link.name}
                                 </Link>
                             ))}
+                            <div className="flex justify-center pt-4 border-t border-[#D4AF37]/10">
+                                <ShareButton />
+                            </div>
                         </nav>
                     </motion.div>
                 )}
