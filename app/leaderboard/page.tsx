@@ -63,29 +63,29 @@ export default function LeaderboardPage() {
                         return (
                             <div 
                                 key={player.rank} 
-                                className={`flex items-center justify-between p-6 border transition-all ${borderBgClasses}`}
+                                className={`flex items-center justify-between p-4 md:p-6 border gap-2 md:gap-4 transition-all ${borderBgClasses}`}
                             >
-                                <div className="flex items-center gap-6">
-                                    <span className={`text-3xl font-black font-serif w-12 text-center
+                                <div className="flex items-center gap-3 md:gap-6 flex-1 min-w-0">
+                                    <span className={`text-2xl md:text-3xl font-black font-serif w-8 md:w-12 text-center shrink-0
                                         ${isMe ? 'text-[#00A86B]' : isTop3 ? 'text-[#D4AF37]' : 'text-white/40'}`}>
                                         #{player.rank}
                                     </span>
-                                    <div>
-                                        <h3 className={`text-xl font-bold tracking-wider flex items-center gap-3
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className={`text-base md:text-xl font-bold tracking-wider flex items-center gap-2 md:gap-3
                                             ${isMe ? 'text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]' : 'text-white/90'}`}>
-                                            {player.username}
-                                            {isMe && <span className="text-xs bg-[#00A86B] text-black px-2 py-0.5 uppercase tracking-widest font-black rounded-sm">Vous</span>}
+                                            <span className="truncate">{player.username}</span>
+                                            {isMe && <span className="shrink-0 text-[10px] md:text-xs bg-[#00A86B] text-black px-1.5 md:px-2 py-0.5 uppercase tracking-widest font-black rounded-sm">Vous</span>}
                                         </h3>
-                                        <span className={`text-xs uppercase tracking-widest font-bold ${isMe || isTop3 ? 'text-[#D4AF37]' : 'text-[#00A86B]'}`}>
+                                        <span className={`text-[10px] md:text-xs uppercase tracking-widest font-bold block truncate ${isMe || isTop3 ? 'text-[#D4AF37]' : 'text-[#00A86B]'}`}>
                                             {player.grade}
                                         </span>
                                     </div>
                                 </div>
-                                <div className="text-right">
-                                    <span className={`text-2xl font-mono font-bold drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] ${isMe ? 'text-[#00A86B]' : 'text-white'}`}>
+                                <div className="text-right shrink-0">
+                                    <span className={`text-lg md:text-2xl font-mono font-bold drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] ${isMe ? 'text-[#00A86B]' : 'text-white'}`}>
                                         {player.xp}
                                     </span>
-                                    <span className={`text-sm font-bold tracking-widest ml-2 uppercase ${isMe ? 'text-[#00A86B]/80' : 'text-[#D4AF37]/80'}`}>XP</span>
+                                    <span className={`text-[10px] md:text-sm font-bold tracking-widest ml-1 md:ml-2 uppercase ${isMe ? 'text-[#00A86B]/80' : 'text-[#D4AF37]/80'}`}>XP</span>
                                 </div>
                             </div>
                         );
