@@ -13,35 +13,29 @@ const DIALOG_LINES = [
 
 export function GuideCharacter() {
   const [currentLine, setCurrentLine] = useState(0);
-  const [displayedText, setDisplayedText] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  const [isTyping, setIsTyping] = useState(true);
+
+  const text = DIALOG_LINES[currentLine];
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    const text = DIALOG_LINES[currentLine];
-    let currentIndex = 0;
-    
     setIsTyping(true);
-    setDisplayedText("");
+    
+    const typingDuration = text.length * 50; // 50ms per character
+    
+    const typingTimeout = setTimeout(() => {
+      setIsTyping(false);
+    }, typingDuration + 500);
 
-    const typeChar = () => {
-      if (currentIndex < text.length) {
-        setDisplayedText(prev => prev + text[currentIndex]);
-        currentIndex++;
-        timeout = setTimeout(typeChar, 50); // Typing speed
-      } else {
-        setIsTyping(false);
-        // Change line after 5 seconds
-        timeout = setTimeout(() => {
-          setCurrentLine((prev) => (prev + 1) % DIALOG_LINES.length);
-        }, 5000);
-      }
+    // Auto advance line after a delay
+    const advanceTimeout = setTimeout(() => {
+      setCurrentLine((prev) => (prev + 1) % DIALOG_LINES.length);
+    }, typingDuration + 5500);
+
+    return () => {
+      clearTimeout(typingTimeout);
+      clearTimeout(advanceTimeout);
     };
-
-    timeout = setTimeout(typeChar, 500); // Initial delay
-
-    return () => clearTimeout(timeout);
-  }, [currentLine]);
+  }, [currentLine, text.length]);
 
   return (
     <motion.div 
@@ -60,9 +54,26 @@ export function GuideCharacter() {
           className="relative max-w-[280px] bg-black/60 backdrop-blur-md border border-[#D4AF37]/30 rounded-2xl rounded-br-sm p-4 text-sm text-white font-serif mb-12 shadow-[0_0_15px_rgba(212,175,55,0.15)]"
         >
           <div className="absolute top-2 left-3 w-1.5 h-1.5 rounded-full bg-[#00A86B] animate-pulse" />
-          <p className="pl-4 min-h-[40px] flex items-center">
-            {displayedText}
-            {isTyping && <span className="inline-block w-1.5 h-4 ml-1 bg-[#D4AF37] animate-pulse" />}
+          <p className="pl-4 min-h-[40px] flex flex-wrap items-center">
+            {text.split("").map((char, index) => (
+              <motion.span
+                key={`${currentLine}-${index}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.05, duration: 0.1 }}
+                style={{ whiteSpace: char === " " ? "pre" : "normal" }}
+              >
+                {char}
+              </motion.span>
+            ))}
+            {isTyping && (
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ repeat: Infinity, duration: 0.8 }}
+                className="inline-block w-1.5 h-4 ml-1 bg-[#D4AF37]" 
+              />
+            )}
           </p>
           
           {/* Bubble Tail */}
