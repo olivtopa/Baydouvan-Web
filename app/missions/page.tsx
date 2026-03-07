@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { GAMEPLAY_CHAPTERS } from "../../lib/data/gameplay";
 import { useGameProgress } from "../../lib/hooks/useGameProgress";
+import { AuthButton } from "../../components/auth/AuthButton";
 
 export default function MissionsPage() {
     const { progress, isLoaded } = useGameProgress();
@@ -15,13 +16,16 @@ export default function MissionsPage() {
                 <Link href="/" className="text-2xl font-black tracking-widest hover:text-white transition-colors font-serif">
                     BAYDOUVAN
                 </Link>
-                <nav className="flex flex-wrap gap-4 md:gap-6 text-sm font-bold tracking-wider uppercase font-serif">
-                    <Link href="/map" className="hover:text-white transition-colors">Carte</Link>
-                    <Link href="/missions" className="text-[#00A86B]">Missions</Link>
-                    <Link href="/leaderboard" className="hover:text-white transition-colors">Classement</Link>
-                    <Link href="/artifacts" className="hover:text-white transition-colors">Artefacts</Link>
-                    <Link href="/profile" className="hover:text-white transition-colors">Profil</Link>
-                </nav>
+                <div className="flex items-center gap-8">
+                    <nav className="flex flex-wrap gap-4 md:gap-6 text-sm font-bold tracking-wider uppercase font-serif">
+                        <Link href="/map" className="hover:text-white transition-colors">Carte</Link>
+                        <Link href="/missions" className="text-[#00A86B]">Missions</Link>
+                        <Link href="/leaderboard" className="hover:text-white transition-colors">Classement</Link>
+                        <Link href="/artifacts" className="hover:text-white transition-colors">Artefacts</Link>
+                        <Link href="/profile" className="hover:text-white transition-colors">Profil</Link>
+                    </nav>
+                    <AuthButton />
+                </div>
             </header>
 
             <div className="max-w-5xl mx-auto w-full">

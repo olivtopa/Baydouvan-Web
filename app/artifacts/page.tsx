@@ -2,15 +2,8 @@
 
 import Link from "next/link";
 import { useGameProgress } from "../../lib/hooks/useGameProgress";
-
-const MOCK_ARTIFACTS = [
-  { id: 1, name: "Le Papyrus d'Imhotep", civilization: "Kemet", icon: "📜", rarity: "Légendaire", requiredMissions: [11, 15] },
-  { id: 2, name: "Couronne de Kush", civilization: "Nubie", icon: "👑", rarity: "Épique", requiredMissions: [24, 28] },
-  { id: 3, name: "Or de Mansa Musa", civilization: "Mali", icon: "💰", rarity: "Rare", requiredMissions: [34, 40] },
-  { id: 4, name: "Masque d'Ivoire", civilization: "Bénin", icon: "🎭", rarity: "Épique", requiredMissions: [53, 56] },
-  { id: 5, name: "Stèle d'Aksoum", civilization: "Éthiopie", icon: "🏛️", rarity: "Légendaire", requiredMissions: [62] },
-  { id: 6, name: "Oiseau de Zimbabwe", civilization: "Zimbabwe", icon: "🦅", rarity: "Rare", requiredMissions: [71] },
-];
+import { ARTIFACTS_DATA } from "../../lib/data/artifacts";
+import { AuthButton } from "../../components/auth/AuthButton";
 
 export default function ArtifactsPage() {
     const { progress, isLoaded } = useGameProgress();
@@ -23,13 +16,16 @@ export default function ArtifactsPage() {
                 <Link href="/" className="text-2xl font-black tracking-widest hover:text-white transition-colors font-serif">
                     BAYDOUVAN
                 </Link>
-                <nav className="flex flex-wrap gap-4 md:gap-6 text-sm font-bold tracking-wider uppercase font-serif">
-                    <Link href="/map" className="hover:text-white transition-colors">Carte</Link>
-                    <Link href="/missions" className="hover:text-white transition-colors">Missions</Link>
-                    <Link href="/leaderboard" className="hover:text-white transition-colors">Classement</Link>
-                    <Link href="/artifacts" className="text-[#00A86B]">Artefacts</Link>
-                    <Link href="/profile" className="hover:text-white transition-colors">Profil</Link>
-                </nav>
+                <div className="flex items-center gap-8">
+                    <nav className="flex flex-wrap gap-4 md:gap-6 text-sm font-bold tracking-wider uppercase font-serif">
+                        <Link href="/map" className="hover:text-white transition-colors">Carte</Link>
+                        <Link href="/missions" className="hover:text-white transition-colors">Missions</Link>
+                        <Link href="/leaderboard" className="hover:text-white transition-colors">Classement</Link>
+                        <Link href="/artifacts" className="text-[#00A86B]">Artefacts</Link>
+                        <Link href="/profile" className="hover:text-white transition-colors">Profil</Link>
+                    </nav>
+                    <AuthButton />
+                </div>
             </header>
 
             <div className="max-w-6xl mx-auto w-full">
@@ -39,35 +35,47 @@ export default function ArtifactsPage() {
                 <p className="text-center text-white/60 mb-12 uppercase tracking-widest text-sm">Collection Histoire Africaine</p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {MOCK_ARTIFACTS.map((artifact) => {
+                    {ARTIFACTS_DATA.map((artifact) => {
                         const isUnlocked = artifact.requiredMissions.some(m => progress.completedMissions.includes(m));
                         
                         return (
                             <div 
                                 key={artifact.id} 
-                                className={`border ${isUnlocked ? 'border-[#00A86B]/50 bg-[#0F2A44]/50' : 'border-white/10 bg-black'} p-6 relative overflow-hidden group transition-all`}
+                                className={`flex flex-col border ${isUnlocked ? 'border-[#D4AF37]/50 bg-[#D4AF37]/5 shadow-[0_0_20px_rgba(212,175,55,0.15)] hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]' : 'border-white/10 bg-black'} p-6 relative overflow-hidden group transition-all duration-500`}
                             >
                                 <div className="absolute top-4 right-4 text-xs font-bold tracking-widest uppercase">
                                     {isUnlocked ? (
-                                        <span className="text-[#00A86B]">Débloqué</span>
+                                        <span className="text-[#D4AF37]">Acquis</span>
                                     ) : (
                                         <span className="text-white/30">Caché</span>
                                     )}
                                 </div>
-                                <div className={`text-6xl mb-6 flex justify-center ${!isUnlocked && 'opacity-10 grayscale blur-sm'}`}>
+                                <div className={`text-7xl mt-4 mb-6 flex justify-center transition-transform duration-700 ${!isUnlocked ? 'opacity-10 grayscale blur-sm' : 'group-hover:scale-110 drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]'}`}>
                                     {artifact.icon}
                                 </div>
-                                <div className="text-center">
-                                    <span className="text-[#D4AF37]/60 text-xs font-bold uppercase tracking-widest mb-1 block">
-                                        {isUnlocked ? artifact.civilization : '???'}
+                                <div className="text-center flex-1 flex flex-col">
+                                    <span className="text-[#00A86B] text-xs font-bold uppercase tracking-widest mb-2 block font-mono">
+                                        {isUnlocked ? `Origine : ${artifact.civilization}` : '???'}
                                     </span>
-                                    <h3 className={`text-xl font-bold font-serif ${isUnlocked ? 'text-white' : 'text-white/30'}`}>
+                                    <h3 className={`text-2xl font-black uppercase tracking-widest font-serif mb-4 ${isUnlocked ? 'text-white' : 'text-white/30'}`}>
                                         {isUnlocked ? artifact.name : 'Artefact Inconnu'}
                                     </h3>
+                                    
                                     {isUnlocked && (
-                                        <div className="mt-4 px-3 py-1 bg-[#D4AF37]/10 border border-[#D4AF37]/30 inline-block text-xs uppercase tracking-widest text-[#D4AF37]">
-                                            {artifact.rarity}
-                                        </div>
+                                        <>
+                                            <p className="text-white/70 text-sm leading-relaxed italic mb-6 flex-1">
+                                                "{artifact.description}"
+                                            </p>
+                                            <div className="mt-auto">
+                                                <div className={`px-4 py-1.5 border inline-block text-xs font-bold uppercase tracking-widest
+                                                    ${artifact.rarity === 'Légendaire' ? 'border-purple-500/50 text-purple-400 bg-purple-500/10' : 
+                                                      artifact.rarity === 'Épique' ? 'border-[#00A86B]/50 text-[#00A86B] bg-[#00A86B]/10' : 
+                                                      'border-[#D4AF37]/50 text-[#D4AF37] bg-[#D4AF37]/10'}`}
+                                                >
+                                                    {artifact.rarity}
+                                                </div>
+                                            </div>
+                                        </>
                                     )}
                                 </div>
                             </div>

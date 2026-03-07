@@ -187,10 +187,10 @@ export const GAMEPLAY_CHAPTERS: Chapter[] = [
 
 export const GRADES = [
   { name: "Initié", requiredXP: 0 },
-  { name: "Explorateur", requiredXP: 1000 },
-  { name: "Gardien", requiredXP: 5000 },
-  { name: "Sage", requiredXP: 10000 },
-  { name: "Maître", requiredXP: 20000 }
+  { name: "Gardien de la mémoire", requiredXP: 1000 },
+  { name: "Sage africain", requiredXP: 5000 },
+  { name: "Maître de Kemet", requiredXP: 10000 },
+  { name: "Légende", requiredXP: 20000 }
 ];
 
 export function getGradeFromXP(xp: number): string {

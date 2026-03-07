@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Orbitron } from "next/font/google";
 import "./globals.css";
 import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -39,6 +40,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${orbitron.variable} antialiased bg-black-main text-white font-sans`}
       >
+        <CustomCursor />
         <ServiceWorkerRegister />
         {children}
       </body>

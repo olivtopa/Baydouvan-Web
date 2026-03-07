@@ -3,12 +3,16 @@
 import { useMemo, useState } from "react";
 import { GAMEPLAY_CHAPTERS } from "../../../lib/data/gameplay";
 import { useGameProgress } from "../../../lib/hooks/useGameProgress";
+import { QuizQuestion, Enigma, MapExplorationPoint } from "../../../lib/data/challenges";
+import { QuizChallenge } from "../../../components/missions/QuizChallenge";
+import { EnigmaChallenge } from "../../../components/missions/EnigmaChallenge";
+import { MapExplorationChallenge } from "../../../components/missions/MapExplorationChallenge";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function PlayMissionPage({ params }: { params: { missionId: string } }) {
     const router = useRouter();
-    const { progress, isLoaded, completeMission } = useGameProgress();
+    const { progress, isLoaded, completeMission, getChallengeData } = useGameProgress();
     const [gameState, setGameState] = useState<"intro" | "playing" | "success">("intro");
 
     const missionIdNum = parseInt(params.missionId);
@@ -71,25 +75,35 @@ export default function PlayMissionPage({ params }: { params: { missionId: strin
                 )}
 
                 {gameState === "playing" && (
-                    <div className="space-y-8 text-center animate-fade-in">
-                        <div className="p-6 border border-white/10 bg-black/50 mb-8">
-                            <p className="text-white text-xl font-medium">
-                                Enigme de {mission.type}:
-                                {mission.type === "quiz" ? " Sélectionnez la bonne réponse pour prouver votre savoir." : " Résolvez le puzzle historique pour avancer."}
-                            </p>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 gap-4">
-                            <button onClick={handleSuccess} className="px-6 py-4 border border-[#D4AF37]/50 hover:border-[#00A86B] hover:text-[#00A86B] transition-colors font-bold text-left">
-                                A. Réponse ou action correcte
-                            </button>
-                            <button className="px-6 py-4 border border-[#D4AF37]/50 hover:bg-red-900/20 hover:border-red-500 transition-colors font-bold text-left">
-                                B. Fausse piste
-                            </button>
-                            <button className="px-6 py-4 border border-[#D4AF37]/50 hover:bg-red-900/20 hover:border-red-500 transition-colors font-bold text-left">
-                                C. Distraction historique
-                            </button>
-                        </div>
+                    <div className="w-full animate-fade-in">
+                        {mission.type === "quiz" && getChallengeData(mission.id, "quiz") ? (
+                            <QuizChallenge 
+                                quiz={getChallengeData(mission.id, "quiz") as QuizQuestion} 
+                                onSuccess={handleSuccess} 
+                            />
+                        ) : mission.type === "puzzle" && getChallengeData(mission.id, "puzzle") ? (
+                            <EnigmaChallenge 
+                                enigma={getChallengeData(mission.id, "puzzle") as Enigma} 
+                                onSuccess={handleSuccess} 
+                            />
+                        ) : mission.type === "exploration" && getChallengeData(mission.id, "exploration") ? (
+                            <MapExplorationChallenge 
+                                point={getChallengeData(mission.id, "exploration") as MapExplorationPoint} 
+                                onSuccess={handleSuccess} 
+                            />
+                        ) : (
+                            <div className="text-center space-y-8 p-8 border border-[#D4AF37]/30 bg-black/50">
+                                <p className="text-xl text-white/50 italic">
+                                    Les mémoires de cette épreuve sont encore fragmentées...
+                                </p>
+                                <button 
+                                    onClick={handleSuccess} 
+                                    className="px-6 py-3 border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-colors font-bold uppercase tracking-wider"
+                                >
+                                    Forcer la complétion (Debug)
+                                </button>
+                            </div>
+                        )}
                     </div>
                 )}
 

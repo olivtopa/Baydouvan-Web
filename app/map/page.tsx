@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthButton } from "../../components/auth/AuthButton";
 
 export default function MapPage() {
     return (
@@ -7,13 +8,16 @@ export default function MapPage() {
                 <Link href="/" className="text-2xl font-black tracking-widest hover:text-white transition-colors font-serif">
                     BAYDOUVAN
                 </Link>
-                <nav className="flex flex-wrap gap-4 md:gap-6 text-sm font-bold tracking-wider uppercase font-serif">
-                    <Link href="/map" className="text-[#00A86B]">Carte</Link>
-                    <Link href="/missions" className="hover:text-white transition-colors">Missions</Link>
-                    <Link href="/leaderboard" className="hover:text-white transition-colors">Classement</Link>
-                    <Link href="/artifacts" className="hover:text-white transition-colors">Artefacts</Link>
-                    <Link href="/profile" className="hover:text-white transition-colors">Profil</Link>
-                </nav>
+                <div className="flex items-center gap-8">
+                    <nav className="flex flex-wrap gap-4 md:gap-6 text-sm font-bold tracking-wider uppercase font-serif">
+                        <Link href="/map" className="text-[#00A86B]">Carte</Link>
+                        <Link href="/missions" className="hover:text-white transition-colors">Missions</Link>
+                        <Link href="/leaderboard" className="hover:text-white transition-colors">Classement</Link>
+                        <Link href="/artifacts" className="hover:text-white transition-colors">Artefacts</Link>
+                        <Link href="/profile" className="hover:text-white transition-colors">Profil</Link>
+                    </nav>
+                    <AuthButton />
+                </div>
             </header>
 
             <div className="flex-1 flex flex-col items-center justify-center border border-[#D4AF37]/20 relative overflow-hidden bg-black/50">

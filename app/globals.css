@@ -26,6 +26,12 @@ body {
   font-family: var(--font-sans), sans-serif;
 }
 
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
 h1,
 h2,
 h3,
