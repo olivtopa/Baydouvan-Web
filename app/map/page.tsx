@@ -4,17 +4,17 @@ import { AuthButton } from "../../components/auth/AuthButton";
 export default function MapPage() {
     return (
         <main className="min-h-screen bg-black text-[#D4AF37] p-8 flex flex-col">
-            <header className="flex justify-between items-center mb-12">
-                <Link href="/" className="text-2xl font-black tracking-widest hover:text-white transition-colors font-serif">
+            <header className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0 mb-12 relative z-10 p-6 md:p-8 pb-0 w-full">
+                <Link href="/" className="text-2xl font-black tracking-widest hover:text-white transition-colors font-serif text-[#D4AF37]">
                     BAYDOUVAN
                 </Link>
-                <div className="flex items-center gap-8">
-                    <nav className="flex flex-wrap gap-4 md:gap-6 text-sm font-bold tracking-wider uppercase font-serif">
+                <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full md:w-auto">
+                    <nav className="flex flex-wrap justify-center md:justify-end gap-3 md:gap-6 text-xs md:text-sm font-bold tracking-wider uppercase font-serif w-full md:w-auto">
                         <Link href="/map" className="text-[#00A86B]">Carte</Link>
                         <Link href="/missions" className="hover:text-white transition-colors">Missions</Link>
-                        <Link href="/leaderboard" className="hover:text-white transition-colors">Classement</Link>
-                        <Link href="/artifacts" className="hover:text-white transition-colors">Artefacts</Link>
-                        <Link href="/profile" className="hover:text-white transition-colors">Profil</Link>
+                        <Link href="/leaderboard" className="hover:text-white transition-colors text-[#D4AF37]">Classement</Link>
+                        <Link href="/artifacts" className="hover:text-white transition-colors text-[#D4AF37]">Artefacts</Link>
+                        <Link href="/profile" className="hover:text-white transition-colors text-[#D4AF37]">Profil</Link>
                     </nav>
                     <AuthButton />
                 </div>
