@@ -37,17 +37,25 @@ export function IntroCinematic({ onComplete }: IntroCinematicProps) {
       <div className="text-2xl md:text-3xl lg:text-4xl text-white font-serif min-h-[6rem] flex items-center justify-center relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">
         {step < sentences.length && (
           <motion.p key={step} className="flex flex-wrap justify-center">
-            {sentences[step].split("").map((char, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: index * 0.07, duration: 0.1 }}
-                style={{ whiteSpace: char === " " ? "pre" : "normal" }}
-              >
-                {char}
-              </motion.span>
-            ))}
+            {sentences[step].split(" ").map((word, wordIndex) => {
+              const previousCharsCount = 
+                sentences[step].split(" ").slice(0, wordIndex).join(" ").length + (wordIndex > 0 ? 1 : 0);
+              return (
+                <span key={`${step}-w-${wordIndex}`} className="inline-block whitespace-nowrap mr-2 md:mr-3">
+                  {word.split("").map((char, charIndex) => (
+                    <motion.span
+                      key={`${step}-${wordIndex}-${charIndex}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: (previousCharsCount + charIndex) * 0.07, duration: 0.1 }}
+                      className="inline-block"
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </span>
+              );
+            })}
             <motion.span 
               initial={{ opacity: 0 }}
               animate={{ opacity: [0, 1, 0] }}

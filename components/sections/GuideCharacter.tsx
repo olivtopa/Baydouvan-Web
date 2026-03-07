@@ -55,17 +55,25 @@ export function GuideCharacter() {
         >
           <div className="absolute top-2 left-3 w-1.5 h-1.5 rounded-full bg-[#00A86B] animate-pulse" />
           <p className="pl-4 min-h-[40px] flex flex-wrap items-center">
-            {text.split("").map((char, index) => (
-              <motion.span
-                key={`${currentLine}-${index}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: index * 0.05, duration: 0.1 }}
-                style={{ whiteSpace: char === " " ? "pre" : "normal" }}
-              >
-                {char}
-              </motion.span>
-            ))}
+            {text.split(" ").map((word, wordIndex) => {
+              const previousCharsCount = 
+                text.split(" ").slice(0, wordIndex).join(" ").length + (wordIndex > 0 ? 1 : 0);
+              
+              return (
+                <span key={`${currentLine}-w-${wordIndex}`} className="inline-block whitespace-nowrap mr-1">
+                  {word.split("").map((char, charIndex) => (
+                    <motion.span
+                      key={`${currentLine}-${wordIndex}-${charIndex}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: (previousCharsCount + charIndex) * 0.05, duration: 0.1 }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </span>
+              );
+            })}
             {isTyping && (
               <motion.span 
                 initial={{ opacity: 0 }}
