@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useGameProgress } from "../../lib/hooks/useGameProgress";
 import { GRADES, GAMEPLAY_CHAPTERS, Mission } from "../../lib/data/gameplay";
 import { useMemo } from "react";
-import { AuthButton } from "../../components/auth/AuthButton";
+import { GameHeader } from "../../components/layout/GameHeader";
 
 export default function ProfilePage() {
     const { progress, isLoaded } = useGameProgress();
@@ -45,21 +45,7 @@ export default function ProfilePage() {
 
     return (
         <main className="min-h-screen bg-black text-[#D4AF37] p-8 flex flex-col font-sans">
-            <header className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0 mb-12">
-                <Link href="/" className="text-2xl font-black tracking-widest hover:text-white transition-colors font-serif">
-                    BAYDOUVAN
-                </Link>
-                <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full md:w-auto">
-                    <nav className="flex flex-wrap justify-center md:justify-end gap-3 md:gap-6 text-xs md:text-sm font-bold tracking-wider uppercase font-serif w-full md:w-auto">
-                        <Link href="/map" className="hover:text-white transition-colors">Carte</Link>
-                        <Link href="/missions" className="hover:text-white transition-colors">Missions</Link>
-                        <Link href="/leaderboard" className="hover:text-white transition-colors">Classement</Link>
-                        <Link href="/artifacts" className="hover:text-white transition-colors">Artefacts</Link>
-                        <Link href="/profile" className="text-[#00A86B]">Profil</Link>
-                    </nav>
-                    <AuthButton />
-                </div>
-            </header>
+            <GameHeader currentRoute="/profile" />
 
             <div className="max-w-5xl mx-auto w-full">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

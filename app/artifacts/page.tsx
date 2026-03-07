@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useGameProgress } from "../../lib/hooks/useGameProgress";
 import { ARTIFACTS_DATA } from "../../lib/data/artifacts";
-import { AuthButton } from "../../components/auth/AuthButton";
+import { GameHeader } from "../../components/layout/GameHeader";
 
 export default function ArtifactsPage() {
     const { progress, isLoaded } = useGameProgress();
@@ -12,21 +12,7 @@ export default function ArtifactsPage() {
 
     return (
         <main className="min-h-screen bg-black text-[#D4AF37] p-8 flex flex-col font-sans">
-            <header className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0 mb-12">
-                <Link href="/" className="text-2xl font-black tracking-widest hover:text-white transition-colors font-serif">
-                    BAYDOUVAN
-                </Link>
-                <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full md:w-auto">
-                    <nav className="flex flex-wrap justify-center md:justify-end gap-3 md:gap-6 text-xs md:text-sm font-bold tracking-wider uppercase font-serif w-full md:w-auto">
-                        <Link href="/map" className="hover:text-white transition-colors">Carte</Link>
-                        <Link href="/missions" className="hover:text-white transition-colors">Missions</Link>
-                        <Link href="/leaderboard" className="hover:text-white transition-colors">Classement</Link>
-                        <Link href="/artifacts" className="text-[#00A86B]">Artefacts</Link>
-                        <Link href="/profile" className="hover:text-white transition-colors">Profil</Link>
-                    </nav>
-                    <AuthButton />
-                </div>
-            </header>
+            <GameHeader currentRoute="/artifacts" />
 
             <div className="max-w-6xl mx-auto w-full">
                 <h1 className="text-4xl md:text-5xl font-black uppercase tracking-widest mb-4 text-center font-serif text-[#D4AF37] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]">
