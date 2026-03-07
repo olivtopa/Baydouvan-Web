@@ -7,6 +7,7 @@ import { QuizQuestion, Enigma, MapExplorationPoint } from "../../../lib/data/cha
 import { QuizChallenge } from "../../../components/missions/QuizChallenge";
 import { EnigmaChallenge } from "../../../components/missions/EnigmaChallenge";
 import { MapExplorationChallenge } from "../../../components/missions/MapExplorationChallenge";
+import { ConfettiExplosion } from "../../../components/ui/ConfettiExplosion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -108,7 +109,8 @@ export default function PlayMissionPage({ params }: { params: { missionId: strin
                 )}
 
                 {gameState === "success" && (
-                    <div className="text-center space-y-8 animate-fade-in">
+                    <div className="text-center space-y-8 animate-fade-in relative z-20">
+                        <ConfettiExplosion />
                         <div className="w-24 h-24 rounded-full border-4 border-[#00A86B] mx-auto flex items-center justify-center bg-[#00A86B]/10 shadow-[0_0_30px_rgba(0,168,107,0.5)]">
                             <span className="text-4xl text-[#00A86B]">✓</span>
                         </div>
