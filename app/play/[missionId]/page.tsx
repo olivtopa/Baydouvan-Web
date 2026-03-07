@@ -38,8 +38,12 @@ export default function PlayMissionPage({ params }: { params: { missionId: strin
 
     return (
         <main className="min-h-screen bg-black text-[#D4AF37] p-8 flex flex-col items-center justify-center">
-            <Link href="/missions" className="absolute top-8 left-8 text-sm font-bold tracking-wider uppercase hover:text-white transition-colors">
-                ← Retour
+            <Link 
+                href="/missions" 
+                className="absolute top-2 left-2 md:top-8 md:left-8 p-4 text-sm font-bold tracking-wider uppercase hover:text-white transition-colors z-50 flex items-center gap-2"
+                aria-label="Retour aux missions"
+            >
+                <span className="text-xl leading-none -mt-1">←</span> RETOUR
             </Link>
 
             <div className="max-w-2xl w-full border border-[#D4AF37]/30 bg-[#D4AF37]/5 p-8 relative overflow-hidden">
