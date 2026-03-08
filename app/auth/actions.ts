@@ -28,13 +28,17 @@ export async function login(formData: FormData) {
 export async function signup(formData: FormData) {
   const supabase = await createClient()
 
+  // We determine the origin to redirect back to the callback route
+  const origin = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+
   const data = {
     email: formData.get('email') as string,
     password: formData.get('password') as string,
     options: {
       data: {
         username: formData.get('username') as string,
-      }
+      },
+      emailRedirectTo: `${origin}/auth/callback`,
     }
   }
 
@@ -45,8 +49,7 @@ export async function signup(formData: FormData) {
     redirect('/login?message=' + encodeURIComponent(error.message))
   }
 
-  revalidatePath('/', 'layout')
-  redirect('/profile')
+  redirect('/login?message=' + encodeURIComponent('Compte créé avec succès ! Un email confirmant votre inscription a été envoyé. Vérifiez votre boîte de réception.'))
 }
 
 export async function signout() {
