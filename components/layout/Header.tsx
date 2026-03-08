@@ -19,10 +19,10 @@ export const Header = () => {
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black-main/80 backdrop-blur-md">
-            <div className="container mx-auto flex h-28 md:h-40 items-center justify-between px-6">
+            <div className="container mx-auto flex h-36 md:h-52 items-center justify-between px-6">
                 {/* Logo */}
                 <Link href="/" className="flex items-center">
-                    <div className="relative h-24 w-24 md:h-36 md:w-36 overflow-hidden drop-shadow-[0_0_15px_rgba(212,175,55,0.5)] transition-transform hover:scale-110">
+                    <div className="relative h-[120px] w-[120px] md:h-[180px] md:w-[180px] overflow-hidden drop-shadow-[0_0_20px_rgba(212,175,55,0.6)] transition-transform hover:scale-110">
                         <Image
                             src="/logo.png"
                             alt="Baydouvan Logo"
