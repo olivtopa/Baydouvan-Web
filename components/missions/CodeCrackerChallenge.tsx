@@ -120,6 +120,25 @@ export function CodeCrackerChallenge({ cracker, onSuccess }: CodeCrackerChalleng
             </motion.div>
 
             <AnimatePresence>
+                {!isSuccess && (
+                     <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="flex justify-center mt-8"
+                     >
+                         <button 
+                             onClick={() => {
+                                 const correctWord = cracker.hiddenWord.toUpperCase().split('');
+                                 setGuesses(correctWord);
+                                 setIsSuccess(true);
+                             }}
+                             className="px-6 py-3 border border-red-500/50 text-red-500/70 hover:text-red-500 hover:border-red-500 transition-colors text-sm uppercase tracking-wider"
+                         >
+                             Révéler la réponse
+                         </button>
+                     </motion.div>
+                )}
                 {isSuccess && (
                     <motion.div 
                         initial={{ opacity: 0, scale: 0.9 }}

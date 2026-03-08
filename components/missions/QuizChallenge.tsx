@@ -60,8 +60,25 @@ export function QuizChallenge({ quiz, onSuccess }: QuizChallengeProps) {
             </div>
 
             {isCorrect === false && (
-                <div className="text-red-500 text-center font-bold mt-4 animate-fade-in text-lg">
-                    Réponse incorrecte. La mémoire s'estompe, essayez encore.
+                <div className="text-red-500 text-center font-bold mt-4 animate-fade-in text-lg space-y-4">
+                    <p>Réponse incorrecte. La mémoire s'estompe, essayez encore.</p>
+                    <button 
+                        onClick={() => handleSelect(quiz.correctAnswerIndex)}
+                        className="px-6 py-2 border border-red-500/50 text-red-500/70 hover:text-red-500 hover:bg-red-500/10 transition-colors text-sm uppercase tracking-wider mx-auto block"
+                    >
+                        Révéler la réponse
+                    </button>
+                </div>
+            )}
+
+            {isCorrect === null && (
+                <div className="flex justify-center mt-6">
+                    <button 
+                        onClick={() => handleSelect(quiz.correctAnswerIndex)}
+                        className="px-6 py-2 border border-red-500/50 text-red-500/70 hover:text-red-500 hover:border-red-500 transition-colors text-sm uppercase tracking-wider"
+                    >
+                        Je donne ma langue au chat
+                    </button>
                 </div>
             )}
 

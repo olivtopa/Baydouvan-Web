@@ -62,6 +62,16 @@ export function EnigmaChallenge({ enigma, onSuccess }: EnigmaChallengeProps) {
                     <div className="flex flex-col md:flex-row justify-center gap-4 pt-4">
                         <button 
                             type="button"
+                            onClick={() => {
+                                setInputValue(enigma.acceptedAnswers[0]);
+                                setIsCorrect(true);
+                            }}
+                            className="px-6 py-3 border border-red-500/50 text-red-500/70 hover:text-red-500 hover:border-red-500 transition-colors text-sm uppercase tracking-wider"
+                        >
+                            Révéler la réponse
+                        </button>
+                        <button 
+                            type="button"
                             onClick={() => setHintLevel(prev => Math.min(prev + 1, enigma.hints.length))}
                             disabled={hintLevel >= enigma.hints.length}
                             className="px-6 py-3 border border-white/20 text-white/50 hover:text-white hover:border-white/50 transition-colors text-sm uppercase tracking-wider disabled:opacity-30 disabled:cursor-not-allowed"
