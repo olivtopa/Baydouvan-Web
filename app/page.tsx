@@ -57,7 +57,7 @@ export default function Home() {
                     transition={{ duration: 1, ease: "easeOut" }}
                     className="text-center w-full pt-8 md:pt-12"
                 >
-                    <div className="relative w-full max-w-6xl h-[255px] md:h-[425px] mx-auto mb-4 drop-shadow-[0_0_40px_rgba(212,175,55,0.4)]">
+                    <div className="relative w-full max-w-6xl h-[270px] md:h-[450px] mx-auto mb-4 drop-shadow-[0_0_40px_rgba(212,175,55,0.4)]">
                         <Image
                             src="/logo.png"
                             alt="Baydouvan Logo"
