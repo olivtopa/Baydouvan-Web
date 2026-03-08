@@ -2,7 +2,7 @@ export interface Mission {
   id: number;
   title: string;
   xp: number;
-  type: "quiz" | "exploration" | "puzzle";
+  type: "quiz" | "exploration" | "puzzle" | "memory" | "cracker";
 }
 
 export interface Chapter {
@@ -40,10 +40,10 @@ export const GAMEPLAY_CHAPTERS: Chapter[] = [
       { id: 13, title: "Comprendre les hiéroglyphes", xp: 100, type: "quiz" },
       { id: 14, title: "Trouver le temple perdu", xp: 100, type: "exploration" },
       { id: 15, title: "Protéger un papyrus ancien", xp: 100, type: "puzzle" },
-      { id: 16, title: "Décoder un symbole d’Anubis", xp: 100, type: "puzzle" },
+      { id: 16, title: "Décoder un symbole d’Anubis", xp: 100, type: "cracker" },
       { id: 17, title: "Explorer la bibliothèque d’Alexandrie", xp: 100, type: "exploration" },
       { id: 18, title: "Trouver la tombe secrète", xp: 100, type: "exploration" },
-      { id: 19, title: "Résoudre le puzzle des dieux", xp: 100, type: "puzzle" },
+      { id: 19, title: "Mémoriser le panthéon divin", xp: 100, type: "memory" },
       { id: 20, title: "Restaurer un artefact sacré", xp: 100, type: "puzzle" }
     ]
   },

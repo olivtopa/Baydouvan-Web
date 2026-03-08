@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getGradeFromXP } from "../data/gameplay";
-import { quizzes, enigmas, mapPoints } from "../data/challenges";
+import { quizzes, enigmas, mapPoints, memoryGames, codeCrackers } from "../data/challenges";
 import { createClient } from "../../utils/supabase/client";
 
 export interface GameProgress {
@@ -111,7 +111,7 @@ export function useGameProgress() {
     saveProgress(DEFAULT_PROGRESS);
   };
   
-  const getChallengeData = (missionId: number, type: 'quiz' | 'puzzle' | 'exploration') => {
+  const getChallengeData = (missionId: number, type: 'quiz' | 'puzzle' | 'exploration' | 'memory' | 'cracker') => {
     switch (type) {
       case 'quiz':
         return quizzes[missionId] || null;
@@ -119,6 +119,10 @@ export function useGameProgress() {
         return enigmas[missionId] || null;
       case 'exploration':
         return mapPoints[missionId] || null;
+      case 'memory':
+        return memoryGames[missionId] || null;
+      case 'cracker':
+        return codeCrackers[missionId] || null;
       default:
         return null;
     }

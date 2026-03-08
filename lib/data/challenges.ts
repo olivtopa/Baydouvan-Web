@@ -22,6 +22,24 @@ export interface MapExplorationPoint {
   unlocksMissionId?: number;
 }
 
+export interface MemoryCard {
+  id: string;
+  content: string;
+}
+
+export interface MemoryGame {
+  missionId: number;
+  pairs: MemoryCard[];
+  successMessage: string;
+}
+
+export interface CodeCracker {
+  missionId: number;
+  hiddenWord: string;
+  clue: string;
+  successMessage: string;
+}
+
 // Initial data for some missions as examples
 
 export const quizzes: Record<number, QuizQuestion> = {
@@ -263,5 +281,29 @@ export const mapPoints: Record<number, MapExplorationPoint> = {
     coordinates: { lat: 16.7666, lng: -3.0026 },
     story: "Tombouctou, la ville aux 333 saints. Marchez dans les rues où les érudits discutaient de mathématiques, d'astronomie et de religion il y a des siècles.",
     unlocksMissionId: 36
+  }
+};
+
+export const memoryGames: Record<number, MemoryGame> = {
+  19: {
+    missionId: 19,
+    pairs: [
+      { id: "osiris", content: "Osiris (Ousir)" },
+      { id: "isis", content: "Isis (Aset)" },
+      { id: "horus", content: "Horus (Heru)" },
+      { id: "anubis", content: "Anubis (Inpou)" },
+      { id: "thoth", content: "Thot (Djehouty)" },
+      { id: "maat", content: "Maât" }
+    ],
+    successMessage: "Les mémoires divines ont été reformées. Vous avez recréé l'harmonie (Maât)."
+  }
+};
+
+export const codeCrackers: Record<number, CodeCracker> = {
+  16: {
+    missionId: 16,
+    hiddenWord: "INPOU",
+    clue: "Nom africain originel du guide à tête de canidé (5 lettres).",
+    successMessage: "Le sceau est brisé ! Inpou vous accorde son passage."
   }
 };

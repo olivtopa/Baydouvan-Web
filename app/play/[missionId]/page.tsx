@@ -3,10 +3,12 @@
 import { useMemo, useState } from "react";
 import { GAMEPLAY_CHAPTERS } from "../../../lib/data/gameplay";
 import { useGameProgress } from "../../../lib/hooks/useGameProgress";
-import { QuizQuestion, Enigma, MapExplorationPoint } from "../../../lib/data/challenges";
+import { QuizQuestion, Enigma, MapExplorationPoint, MemoryGame, CodeCracker } from "../../../lib/data/challenges";
 import { QuizChallenge } from "../../../components/missions/QuizChallenge";
 import { EnigmaChallenge } from "../../../components/missions/EnigmaChallenge";
 import { MapExplorationChallenge } from "../../../components/missions/MapExplorationChallenge";
+import { MemoryChallenge } from "../../../components/missions/MemoryChallenge";
+import { CodeCrackerChallenge } from "../../../components/missions/CodeCrackerChallenge";
 import { ConfettiExplosion } from "../../../components/ui/ConfettiExplosion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -94,6 +96,16 @@ export default function PlayMissionPage({ params }: { params: { missionId: strin
                         ) : mission.type === "exploration" && getChallengeData(mission.id, "exploration") ? (
                             <MapExplorationChallenge 
                                 point={getChallengeData(mission.id, "exploration") as MapExplorationPoint} 
+                                onSuccess={handleSuccess} 
+                            />
+                        ) : mission.type === "memory" && getChallengeData(mission.id, "memory") ? (
+                            <MemoryChallenge 
+                                game={getChallengeData(mission.id, "memory") as MemoryGame} 
+                                onSuccess={handleSuccess} 
+                            />
+                        ) : mission.type === "cracker" && getChallengeData(mission.id, "cracker") ? (
+                            <CodeCrackerChallenge 
+                                cracker={getChallengeData(mission.id, "cracker") as CodeCracker} 
                                 onSuccess={handleSuccess} 
                             />
                         ) : (
