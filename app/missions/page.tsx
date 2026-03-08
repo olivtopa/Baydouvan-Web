@@ -21,7 +21,7 @@ function MissionsList() {
 
     return (
         <div className="max-w-5xl mx-auto w-full">
-            <h1 className="text-4xl md:text-5xl font-black uppercase tracking-widest mb-4 text-center text-[#D4AF37] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]">
+            <h1 className="text-2xl md:text-5xl font-black uppercase tracking-widest mb-4 text-center text-[#D4AF37] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]">
                 {regionFilter ? `Missions : ${regionFilter}` : "Missions & Défis"}
             </h1>
             

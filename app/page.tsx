@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { IntroCinematic } from "../components/IntroCinematic";
 import { GuideCharacter } from "../components/sections/GuideCharacter";
 import { DailyChallenges } from "../components/sections/DailyChallenges";
@@ -55,7 +56,7 @@ export default function Home() {
                     initial={{ opacity: 0, y: -30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
-                    className="text-center w-full pt-8 md:pt-12"
+                    className="text-center w-full pt-2 md:pt-12"
                 >
                     <div className="relative w-full max-w-6xl h-[270px] md:h-[450px] mx-auto mb-4 drop-shadow-[0_0_40px_rgba(212,175,55,0.4)]">
                         <Image
@@ -106,6 +107,22 @@ export default function Home() {
                     </div>
 
                 </div>
+
+                {/* Scroll Indicator */}
+                <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 2, duration: 1 }}
+                    className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 text-[#D4AF37]/60"
+                >
+                    <span className="text-[10px] uppercase tracking-[0.3em] font-serif">Découvrir</span>
+                    <motion.div
+                        animate={{ y: [0, 8, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                        <ChevronDown size={20} />
+                    </motion.div>
+                </motion.div>
             </div>
 
             <footer className="absolute bottom-0 w-full py-4 text-center text-white/60 font-medium text-[10px] md:text-xs tracking-[0.3em] uppercase font-serif z-20">

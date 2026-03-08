@@ -15,7 +15,7 @@ export default function MapPage() {
                 {/* Placeholder for the interactive map */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.1)_0%,transparent_70%)]" />
                 
-                <h1 className="text-4xl md:text-6xl font-black uppercase tracking-widest text-[#D4AF37] mb-8 relative z-10">
+                <h1 className="text-2xl md:text-6xl font-black uppercase tracking-widest text-[#D4AF37] mb-8 relative z-10">
                     Carte d'Afrique
                 </h1>
                 <p className="text-white/60 mb-12 max-w-xl text-center relative z-10">
