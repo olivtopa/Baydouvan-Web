@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Menu, X, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -42,8 +43,15 @@ export const GameHeader = ({ currentRoute }: GameHeaderProps) => {
 
     return (
         <header className="flex justify-between items-center mb-12 relative z-50">
-            <Link href="/" className="text-2xl font-black tracking-widest hover:text-white transition-colors font-serif text-[#D4AF37]">
-                BAYDOUVAN
+            <Link href="/" className="transition-transform hover:scale-110">
+                <div className="relative h-10 w-10 md:h-12 md:w-12 overflow-hidden drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+                    <Image
+                        src="/logo.png"
+                        alt="Baydouvan Logo"
+                        fill
+                        className="object-contain"
+                    />
+                </div>
             </Link>
 
             {/* Desktop Navigation */}

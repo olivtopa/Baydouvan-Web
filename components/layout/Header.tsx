@@ -21,18 +21,15 @@ export const Header = () => {
         <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black-main/80 backdrop-blur-md">
             <div className="container mx-auto flex h-20 items-center justify-between px-6">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-3">
-                    <div className="relative h-16 w-16 overflow-hidden rounded-full border-2 border-gold">
+                <Link href="/" className="flex items-center">
+                    <div className="relative h-12 w-12 md:h-14 md:w-14 overflow-hidden drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] transition-transform hover:scale-110">
                         <Image
-                            src="/images/logo.jpeg"
+                            src="/logo.png"
                             alt="Baydouvan Logo"
                             fill
-                            className="object-cover"
+                            className="object-contain"
                         />
                     </div>
-                    <span className="font-serif text-xl font-bold text-gold tracking-wider hidden sm:block">
-                        BAYDOUVAN
-                    </span>
                 </Link>
 
                 {/* Desktop Nav */}
