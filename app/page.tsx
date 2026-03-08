@@ -57,9 +57,15 @@ export default function Home() {
                     transition={{ duration: 1, ease: "easeOut" }}
                     className="text-center w-full pt-8 md:pt-12"
                 >
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-[#D4AF37] drop-shadow-[0_0_30px_rgba(212,175,55,0.6)] font-serif mb-2">
-                        BAYDOUVAN
-                    </h1>
+                    <div className="relative w-[300px] md:w-[500px] lg:w-[600px] h-[100px] md:h-[150px] lg:h-[180px] mx-auto mb-4 drop-shadow-[0_0_30px_rgba(212,175,55,0.6)]">
+                        <Image
+                            src="/logo.png"
+                            alt="Baydouvan Logo"
+                            fill
+                            className="object-contain"
+                            priority
+                        />
+                    </div>
                     <h2 className="text-xl md:text-2xl font-semibold tracking-[0.2em] text-[#00A86B] drop-shadow-[0_0_15px_rgba(0,168,107,0.5)] uppercase font-serif">
                         Guardians of African Memory
                     </h2>
