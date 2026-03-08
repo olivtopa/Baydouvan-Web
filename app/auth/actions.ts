@@ -49,7 +49,9 @@ export async function signup(formData: FormData) {
     redirect('/login?message=' + encodeURIComponent(error.message))
   }
 
-  redirect('/login?message=' + encodeURIComponent('Compte créé avec succès ! Un email confirmant votre inscription a été envoyé. Vérifiez votre boîte de réception.'))
+  // Because "Confirm email" is disabled, Supabase automatically signs the user in.
+  revalidatePath('/', 'layout')
+  redirect('/profile')
 }
 
 export async function signout() {
