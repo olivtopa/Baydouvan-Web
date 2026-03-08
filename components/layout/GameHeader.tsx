@@ -44,7 +44,7 @@ export const GameHeader = ({ currentRoute }: GameHeaderProps) => {
     return (
         <header className="flex justify-between items-center mb-12 relative z-50">
             <Link href="/" className="transition-transform hover:scale-110">
-                <div className="relative h-10 w-10 md:h-12 md:w-12 overflow-hidden drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+                <div className="relative h-16 w-16 md:h-24 md:w-24 overflow-hidden drop-shadow-[0_0_12px_rgba(212,175,55,0.4)]">
                     <Image
                         src="/logo.png"
                         alt="Baydouvan Logo"
