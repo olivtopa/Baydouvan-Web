@@ -26,10 +26,10 @@ export function AuthButton() {
     if (user) {
         return (
             <div className="flex items-center gap-4">
-                <span className="text-xs text-[#00A86B] font-mono hidden sm:inline-block">
-                    [ {user.user_metadata?.username || user.email} ]
+                <span className="text-[10px] md:text-xs text-[#00A86B] font-mono">
+                    [ {user.user_metadata?.username || user.email?.split('@')[0]} ]
                 </span>
-                <form action={signout}>
+                <form action={signout} className="hidden md:block">
                     <button className="text-xs font-bold tracking-widest uppercase text-white/50 hover:text-red-400 transition-colors">
                         Déconnexion
                     </button>

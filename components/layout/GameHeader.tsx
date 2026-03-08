@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AuthButton } from "../auth/AuthButton";
 import { ShareButton } from "../ui/ShareButton";
+import { createClient } from "../../utils/supabase/client";
+import { signout } from "../../app/auth/actions";
 
 interface GameHeaderProps {
     currentRoute?: string;
@@ -13,6 +15,22 @@ interface GameHeaderProps {
 
 export const GameHeader = ({ currentRoute }: GameHeaderProps) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [user, setUser] = useState<any>(null);
+    const supabase = createClient();
+
+    useEffect(() => {
+        const checkUser = async () => {
+            const { data } = await supabase.auth.getSession();
+            setUser(data.session?.user || null);
+        };
+        checkUser();
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            setUser(session?.user || null);
+        });
+
+        return () => subscription.unsubscribe();
+    }, []);
 
     const links = [
         { name: "Carte", href: "/map" },
@@ -79,8 +97,19 @@ export const GameHeader = ({ currentRoute }: GameHeaderProps) => {
                                     {link.name}
                                 </Link>
                             ))}
-                            <div className="flex justify-center pt-4 border-t border-[#D4AF37]/10">
+                            <div className="flex justify-center pt-4 border-t border-[#D4AF37]/10 flex-col gap-4">
                                 <ShareButton />
+                                {user && (
+                                    <form action={signout} className="w-full">
+                                        <button 
+                                            type="submit"
+                                            className="w-full flex items-center justify-center gap-2 py-3 border border-red-500/30 text-red-500 font-bold uppercase tracking-widest text-xs hover:bg-red-500/10 transition-colors"
+                                        >
+                                            <LogOut size={16} />
+                                            Déconnexion
+                                        </button>
+                                    </form>
+                                )}
                             </div>
                         </nav>
                     </motion.div>
