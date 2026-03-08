@@ -30,7 +30,7 @@ export default function Home() {
     if (!isLoaded) return null;
 
     return (
-        <main className="relative min-h-screen bg-black text-[#D4AF37] flex flex-col p-4 md:p-8 overflow-hidden font-sans">
+        <main className="relative min-h-screen bg-black text-[#D4AF37] flex flex-col p-4 md:p-8 overflow-y-auto font-sans">
             {showIntro && <IntroCinematic onComplete={handleIntroComplete} />}
             
             {/* Background Map & Overlay */}
@@ -113,7 +113,7 @@ export default function Home() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2, duration: 1 }}
-                    className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 text-[#D4AF37]/60"
+                    className="absolute top-[65%] md:top-auto md:bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 text-[#D4AF37]/60"
                 >
                     <span className="text-[10px] uppercase tracking-[0.3em] font-serif">Découvrir</span>
                     <motion.div
