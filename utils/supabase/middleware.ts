@@ -28,7 +28,26 @@ export async function updateSession(request: NextRequest) {
   )
 
   // refreshing the auth token
-  await supabase.auth.getUser()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  // Define protected routes that require a logged in user
+  const isProtectedRoute = request.nextUrl.pathname.startsWith('/profile') || 
+                           request.nextUrl.pathname.startsWith('/play') ||
+                           request.nextUrl.pathname.startsWith('/leaderboard');
+
+  if (isProtectedRoute && !user) {
+    const redirectUrl = request.nextUrl.clone()
+    redirectUrl.pathname = '/login'
+    redirectUrl.searchParams.set('message', 'Vous devez être connecté et avoir confirmé votre email pour y accéder.')
+    return NextResponse.redirect(redirectUrl)
+  }
+
+  // Redirect logged-in users away from the login page
+  if (request.nextUrl.pathname === '/login' && user) {
+    const redirectUrl = request.nextUrl.clone()
+    redirectUrl.pathname = '/profile'
+    return NextResponse.redirect(redirectUrl)
+  }
 
   return supabaseResponse
 }
