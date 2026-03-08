@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { login, signup } from '../auth/actions'
+import { PasswordInput } from '../../components/auth/PasswordInput'
 
 export default function LoginPage({
   searchParams,
@@ -62,13 +63,7 @@ export default function LoginPage({
         <label className="text-xs font-bold tracking-widest uppercase text-[#00A86B]" htmlFor="password">
           Mot de passe secret
         </label>
-        <input
-          className="rounded-none border border-white/20 bg-black/50 px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37] focus:shadow-[0_0_15px_rgba(212,175,55,0.2)] mb-6"
-          type="password"
-          name="password"
-          placeholder="••••••••"
-          required
-        />
+        <PasswordInput name="password" required />
         
         <div className="flex flex-col gap-4">
             <button
