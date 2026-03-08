@@ -57,7 +57,7 @@ export default function Home() {
                     transition={{ duration: 1, ease: "easeOut" }}
                     className="text-center w-full pt-8 md:pt-12"
                 >
-                    <div className="relative w-[300px] md:w-[500px] lg:w-[600px] h-[100px] md:h-[150px] lg:h-[180px] mx-auto mb-4 drop-shadow-[0_0_30px_rgba(212,175,55,0.6)]">
+                    <div className="relative w-[80%] max-w-[500px] h-[120px] md:h-[180px] mx-auto mb-8 drop-shadow-[0_0_30px_rgba(212,175,55,0.6)]">
                         <Image
                             src="/logo.png"
                             alt="Baydouvan Logo"
@@ -66,9 +66,6 @@ export default function Home() {
                             priority
                         />
                     </div>
-                    <h2 className="text-xl md:text-2xl font-semibold tracking-[0.2em] text-[#00A86B] drop-shadow-[0_0_15px_rgba(0,168,107,0.5)] uppercase font-serif">
-                        Guardians of African Memory
-                    </h2>
                     
                     <p className="text-sm md:text-base text-white/80 max-w-2xl mx-auto mt-6 font-medium leading-relaxed bg-black/30 p-4 rounded-xl backdrop-blur-sm border border-white/5">
                         Une société secrète protège les savoirs anciens d'Afrique. 
